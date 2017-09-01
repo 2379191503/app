@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title></title>
+		<script src="js/zepto.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/box.css"/>
+	</head>
+	<body>
+		<div class="box" id="box">
+			<div>1111</div>
+			<div>2222</div>
+			<div>3333</div>
+			<div>4444</div>
+			<div>
+				<button>立即体验</button>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var box=document.getElementById("box");
+			box.addEventListener("touchstart",function(ev){
+				ev.preventDefault();
+			})
+			var w=$("#box").find("div").eq(0).width();
+			var n = 0;
+			$("#box").on("swipeLeft",function(){
+				n++;
+				if(n>$("#box").find("div").size()-1){
+					n=$("#box").find("div").size()-1;
+				}
+				$("#box").css("transform","translate3d(-"+n*w+"px,0,0)");
+			})
+			$("#box").on("swipeRight",function(){
+				n--;
+				if(n<0){
+					n=0;
+				}
+				$("#box").css("transform","translate3d(-"+n*w+"px,0,0)");
+			})
+			$("button").on("touchstart",function(){
+				location.href="https://www.baidu.com";
+			})
+		</script>
+	</body>
+</html>
